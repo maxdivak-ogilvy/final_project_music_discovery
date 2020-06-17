@@ -1,0 +1,2 @@
+SPOTIPY_CLIENT_ID='your-ID-here'
+SPOTIPY_CLIENT_SECRET='your-SECRET-here'

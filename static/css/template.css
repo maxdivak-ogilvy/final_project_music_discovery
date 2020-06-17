@@ -1,0 +1,52 @@
+body {
+  padding:0px;
+  margin:0px;
+  width:80%;
+}
+h1 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  background-color: #000;
+  padding-left: 10px;
+  color: #fff;
+}
+h1.header{
+  background-color:#fff;
+  color:#000;
+}
+h1.logo{
+  background-color:#003366;
+  color:#fff;
+  height:40px;
+  line-height:40px;
+}
+p, input, ul{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  color:#000;
+  padding-left: 10px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #003366;
+}

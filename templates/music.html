@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Discovery</title>
+  </head>
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+
+    <h1 class="header">Music Discovery / Lets Discover Something New </h1>
+
+    <p>Using the Spotify API we'll enter the name of a band or musician that we love, pull a photo along with a list of 20 similar artisit and bands. This method searches Spotify member playlists with our search entry and returns a list of 20 most similar bands accross those playlists.</p>
+
+    <p>Enter a band or musican below:</p>
+
+    <form action="" method="post">
+    <div class="input text" style="margin-left:10px;">{{form.name}}</div>
+    <div class="input submit" style="margin-left:10px;"><input type="submit" value="See my favs"></div>
+    </form>
+
+    <p>{{name}}</p>
+    <p><img src={{image_url}} style="width:80%; height:auto;" /></p>
+    <p>{{similar}}</p>
+
+    {% endblock %}
+  </body>
+</html>
