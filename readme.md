@@ -12,13 +12,13 @@ Ensure you have:
 ### Install
 
 ```
-pip3 install flask --user
+pip3 install flask
 pip3 install spotipy --upgrade
 ```
 
 ### Spotify Developer Account
 
-Sign up for a free Spotify account here: https://developer.spotify.com/dashboard/login
+You'll need to sign up for a free Spotify account here: https://developer.spotify.com/dashboard/login
 
 * **Once logged into the DEV Dashboard, click the green 'create a new app' button**
 * **Name your app and get your 'client ID' and 'client secret ID'**
@@ -34,4 +34,4 @@ python3 main.py
 
 ## To Use
 
-Go to your browser, type `http://127.0.0.1:5000` into the address bar.
+Open a browser and type `http://127.0.0.1:5000` into the address bar.
