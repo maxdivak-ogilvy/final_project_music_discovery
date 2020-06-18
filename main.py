@@ -4,7 +4,7 @@ from wtforms import Form, TextField, TextAreaField, validators, StringField, Sub
 from music import spotify, get_top_five_tracks
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'you-will-never-guess'
+app.config['SECRET_KEY'] = 'change-me-to-something-unique'
 
 class ReusableForm(Form):
     name = TextField('Name:', validators=[validators.required()])
@@ -57,8 +57,9 @@ Name Searched is: {name}
         #returned nothing so do someting
         print(f"-------\nERROR, try again please: {items}\n-------")
         err = f"Sorry, something went wrong. Could be your spelling?"
+        error_photo = "static/img/no-results.jpg"
         similar_err = f""
-        return render_template("music.html", name=err, similar=similar_err, form=form)
+        return render_template("music.html", name=err, image_url=error_photo, similar=similar_err, form=form)
     else:
         artist_name = items[0]["name"]
         artist_id = items[0]["id"]
@@ -75,24 +76,45 @@ Name Searched is: {name}
 
         i=0
         while i < len(similar_results["artists"]):
-            similar_artists_names.append(similar_results["artists"][i]["name"])
-            similar_artists_URI.append(similar_results["artists"][i]["uri"])
-            similar_artists_image.append(similar_results["artists"][i]["images"][0])
+
+            try:
+                similar_artists_names.append(similar_results["artists"][i]["name"])
+            except IndexError as e:
+                print(e)
+                similar_artists_names = None
+
+            try:
+                similar_artists_URI.append(similar_results["artists"][i]["uri"])
+            except IndexError as e:
+                print(e)
+                similar_artists_URI = None
+
+            try:
+                similar_artists_image.append(similar_results["artists"][i]["images"][0])
+            except IndexError as e:
+                print(e)
+                similar_artists_image.append("static/img/no-results.jpg")
+
             i+=1
+
 
         if similar_artists_names==[]:
             similar_artists_notalist = f"Sorry, there's no one quite like {artist_name}!"
         else:
             similar_artists_notalist = str(similar_artists_names)[1:-1] # no brackets
 
-        # print(f"-------\nSimilar_artists is: {similar_artists_notalist}\n-------")
+
+        try:
+            print(f"-------\nFirst similar_artists_URI: {similar_artists_URI[0]}\nWhose name is: {similar_artists_names[0]}\n-------")
+            get_top_five_tracks(similar_artists_URI[0])
+        except IndexError as e:
+            print(e)
+            print(f"-------\nFirst similar_artists_URI: NO SIMILAR URI\nWhose name is: NO SIMILARS\n-------")
+
 
         you_searched_for = f"You searched for: {artist_name}"
         you_may_like_these_bands = f"You should check out: {similar_artists_notalist}"
 
-        print(f"-------\nFirst similar_artists_URI: {similar_artists_URI[0]}\nWhose name is: {similar_artists_names[0]}\n-------")
-
-        get_top_five_tracks(similar_artists_URI[0])
 
         return render_template("music.html", name=you_searched_for, image_url=artists_photo, similar=you_may_like_these_bands, form=form)
 
