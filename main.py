@@ -32,15 +32,11 @@ def music():
     else:
         flash('The form must be filled out. ')
 
-    # musician="bob marley"
     if musician!="":
         name = musician
-        # spotify_lookup(str(musician))
     else:
         name = "Bob Marley"
-        # spotify_lookup("RUSH")
 
-    # remove spaes and replace with %20
     print(f"""
 
 -------
@@ -94,7 +90,7 @@ Name Searched is: {name}
             except IndexError as e:
                 print(e)
                 similar_artists_image.append("static/img/no-results.jpg")
-
+                
             i+=1
 
 
@@ -102,7 +98,6 @@ Name Searched is: {name}
             similar_artists_notalist = f"Sorry, there's no one quite like {artist_name}!"
         else:
             similar_artists_notalist = str(similar_artists_names)[1:-1] # no brackets
-
 
         try:
             print(f"-------\nFirst similar_artists_URI: {similar_artists_URI[0]}\nWhose name is: {similar_artists_names[0]}\n-------")
@@ -114,7 +109,6 @@ Name Searched is: {name}
 
         you_searched_for = f"You searched for: {artist_name}"
         you_may_like_these_bands = f"You should check out: {similar_artists_notalist}"
-
 
         return render_template("music.html", name=you_searched_for, image_url=artists_photo, similar=you_may_like_these_bands, form=form)
 
