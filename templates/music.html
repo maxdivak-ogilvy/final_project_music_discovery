@@ -22,7 +22,18 @@
 
     <p>{{name}}</p>
     <p><img src={{image_url}} style="width:80%; height:auto;" /></p>
-    <p>{{similar}}</p>
+    <!-- <p>{{similar}}</p> -->
+    {% for key, value in similar.items() %}
+      <p onclick="myFunction('{{value}}')" style="cursor:pointer;">{{key}}
+      <br>{{value}}</p>
+    {% endfor %}
+
+    <script type="text/javascript">
+      function myFunction(v) {
+        alert("Value: "+v)
+        music.get_top_five_tracks(v)
+      }
+    </script>
 
     {% endblock %}
   </body>
