@@ -9,13 +9,16 @@ app.config['SECRET_KEY'] = 'change-me-to-something-unique'
 class ReusableForm(Form):
     name = TextField('Name:', validators=[validators.required()])
 
+
 @app.route("/")
 def home():
     return render_template("home.html")
 
+
 @app.route("/about")
 def about():
     return render_template("about.html")
+
 
 @app.route("/music", methods=['GET', 'POST'])
 def music():
@@ -32,11 +35,15 @@ def music():
     else:
         flash('The form must be filled out. ')
 
+    # musician="bob marley"
     if musician!="":
         name = musician
+        # spotify_lookup(str(musician))
     else:
         name = "Bob Marley"
+        # spotify_lookup("RUSH")
 
+    # remove spaes and replace with %20
     print(f"""
 
 -------
@@ -69,30 +76,34 @@ Name Searched is: {name}
         similar_artists_names=[]
         similar_artists_URI=[]
         similar_artists_image=[]
+        similar_dict={}
 
         i=0
         while i < len(similar_results["artists"]):
 
             try:
                 similar_artists_names.append(similar_results["artists"][i]["name"])
+                similar_dict[similar_results["artists"][i]["name"]]=None
             except IndexError as e:
                 print(e)
                 similar_artists_names = None
+                similar_dict[None]=None
 
             try:
                 similar_artists_URI.append(similar_results["artists"][i]["uri"])
+                similar_dict[similar_results["artists"][i]["name"]]=str(similar_results["artists"][i]["uri"])
             except IndexError as e:
                 print(e)
                 similar_artists_URI = None
+                similar_dict[None]=None
 
             try:
                 similar_artists_image.append(similar_results["artists"][i]["images"][0])
             except IndexError as e:
                 print(e)
                 similar_artists_image.append("static/img/no-results.jpg")
-                
-            i+=1
 
+            i+=1
 
         if similar_artists_names==[]:
             similar_artists_notalist = f"Sorry, there's no one quite like {artist_name}!"
@@ -106,11 +117,12 @@ Name Searched is: {name}
             print(e)
             print(f"-------\nFirst similar_artists_URI: NO SIMILAR URI\nWhose name is: NO SIMILARS\n-------")
 
-
         you_searched_for = f"You searched for: {artist_name}"
         you_may_like_these_bands = f"You should check out: {similar_artists_notalist}"
 
-        return render_template("music.html", name=you_searched_for, image_url=artists_photo, similar=you_may_like_these_bands, form=form)
+        # print(f"--------\n{similar_dict}")
+
+        return render_template("music.html", name=you_searched_for, image_url=artists_photo, similar=similar_dict, form=form)
 
 if __name__ == "__main__":
     app.run(debug=True)
