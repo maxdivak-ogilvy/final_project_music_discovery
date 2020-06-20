@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Discovery</title>
+  </head>
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+
+    <h1 class="header">Top 5 tracks on Spotify for: <span style="font-color:#000000;">{{artist}}</span></h1>
+    <p><a href="javascript:history.back()">&#8634; Back To Results</a></p>
+
+
+    {% for track in tracks %}
+    <h1 class="header" style="margin-top:35px; margin-bottom:2px">{{track['name']}}</h1>
+      {% if track['preview_url'] %}
+      <img class="icon" src="{{track['album']['images'][0]['url']}}" />
+      <div class="box" id="wf-{{loop.index}}" style="height: 20px;"></div>
+      {% endif %}
+    {% endfor %}
+
+    <script src="https://unpkg.com/wavesurfer.js"></script>
+
+    <script type="text/javascript">
+      {% for track in tracks %}
+        {% if track['preview_url'] %}
+          var wavesurfer = WaveSurfer.create({
+              container: '#' + "wf-{{loop.index}}",
+              backend: 'MediaElement',
+              progressColor: '#003366',
+              mediaControls: true,
+          });
+          wavesurfer.load("{{track['preview_url']|safe}}");
+        {% endif %}
+      {% endfor %}
+    </script>
+    {% endblock %}
+
+  </body>
+</html>
