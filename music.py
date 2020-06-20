@@ -7,14 +7,16 @@ spotify = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
 def get_top_five_tracks(what_id):
     # return the selected recommended artists top 5 songs
-    preview_top_five = what_id
-    results_top_five = spotify.artist_top_tracks(preview_top_five)
+    results_top_five = spotify.artist_top_tracks(what_id)
+    # print(results_top_five)
     # print(f"-------\nResults_top_five is: {results_top_five}\n-------")
-    for tracks in results_top_five['tracks'][:5]:
-        print('track    : ' + tracks['name'])
-        if tracks['preview_url']==None:
-            print('audio    : ' + "None")
-        else:
-            print('audio    : ' + tracks['preview_url'])
-        print('cover art: ' + tracks['album']['images'][0]['url'])
-        print()
+    # for tracks in results_top_five['tracks'][:5]:
+    #     print('track    : ' + tracks['name'])
+    #     if tracks['preview_url']==None:
+    #         print('audio    : ' + "None")
+    #     else:
+    #         print('audio    : ' + tracks['preview_url'])
+    #     print('cover art: ' + tracks['album']['images'][0]['url'])
+    #     print()
+
+    return results_top_five
