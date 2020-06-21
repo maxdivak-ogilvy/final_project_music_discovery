@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Parent Template</title>
 
-    <link rel="stylesheet" href="{{ url_for('static',    filename='css/template.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/template.css') }}">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
 </head>
   <body>
     <header>
       <div class="container">
         <h1 class="logo">Music Discovery</h1>
-        <strong><nav>
+        <nav>
           <ul class="menu">
-            <li><a href="{{ url_for('about') }}">About</a></li>
-            <li><a href="{{ url_for('music') }}">Music</a></li>
+            <li><a href="{{ url_for('about') }}"><strong>About</strong></a></li>
+            <li><a href="{{ url_for('music') }}"><strong>Music</strong></a></li>
           </ul>
-        </nav></strong>
+        </nav>
       </div>
     </header>
 
