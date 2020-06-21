@@ -17,19 +17,19 @@
 
     <form action="" method="post">
     <div class="input text" style="margin-left:10px;">{{form.name}}</div>
-    <div class="input submit" style="margin-left:10px;"><input type="submit" value="See my favs"></div>
+    <div class="input submit" style="margin-left:10px;"><input type="submit" value="Find similars"></div>
     </form>
 
-    <p>{{name}}</p>
+    <h1 class="header">{{name}}</h1>
 
     {% if image_url!=None %}
-    <p><img src={{image_url}} style="width:70%; height:auto;" /></p>
+      <p><img src={{image_url}} style="width:70%; height:auto;" /></p>
     {% endif %}
 
     {% if similar!=None %}
-    {% for key, value in similar.items() %}
-      <p><a class="text_links" href="/music/{{value}}">{{key}}</a></p>
-    {% endfor %}
+      {% for key, value in similar.items() %}
+        <p><a class="text_links" href="/music/{{value}}">{{key}}</a></p>
+      {% endfor %}
     {% endif %}
 
     {% endblock %}
