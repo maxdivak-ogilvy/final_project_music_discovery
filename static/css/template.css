@@ -50,3 +50,18 @@ li a {
 li a:hover {
   background-color: #003366;
 }
+
+.icon {
+  max-width: 170px;
+  display: inline-block;
+  width: 20%;
+  box-sizing: border-box;
+  padding-left: 7px;
+}
+
+.box {
+  display: inline-block;
+  width: 70%;
+  box-sizing: border-box;
+  padding-left: 10px;
+}
