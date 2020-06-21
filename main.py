@@ -81,7 +81,7 @@ Name Searched is: {name}
             print(f"-------\nERROR, try again please: {items}\n-------")
             err = f"Sorry, something went wrong. Could be your spelling?"
             error_photo = "static/img/no-results.jpg"
-            similar_err = f""
+            similar_err = None
             return render_template("music.html", name=err, image_url=error_photo, similar=similar_err, form=form)
         else:
             artist_name = items[0]["name"]
@@ -106,7 +106,7 @@ Name Searched is: {name}
                     similar_dict[similar_results["artists"][i]["name"]]=None
                 except IndexError as e:
                     print(e)
-                    similar_artists_names = None
+                    similar_artists_names=None
                     similar_dict[None]=None
 
                 try:
@@ -114,7 +114,7 @@ Name Searched is: {name}
                     similar_dict[similar_results["artists"][i]["name"]]=str(similar_results["artists"][i]["uri"])
                 except IndexError as e:
                     print(e)
-                    similar_artists_URI = None
+                    similar_artists_URI=None
                     similar_dict[None]=None
 
                 try:
