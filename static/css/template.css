@@ -6,16 +6,16 @@ body {
 h1 {
   font-family: 'Open Sans', sans-serif;
   font-size: 15px;
-  background-color: #000;
+  background-color: #000000;
   padding-left: 10px;
-  color: #fff;
+  color: #ffffff;
 }
 h1.header{
-  background-color:#fff;
-  color:#003366;
+  background-color:#ffffff;
+  color:#234474;
 }
 h1.logo{
-  background-color:#003366;
+  background-color:#234474;
   color:#fff;
   height:40px;
   line-height:40px;
@@ -23,32 +23,39 @@ h1.logo{
 p, input, ul{
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
-  color:#000;
+  color:#000000;
   padding-left: 10px;
 }
-
 ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  background-color:#FFC864;
   overflow: hidden;
-  background-color: #333333;
 }
-
 li {
   float: left;
 }
-
 li a {
   display: block;
-  color: white;
+  color:#234474;
   text-align: center;
   padding: 16px;
   text-decoration: none;
 }
-
 li a:hover {
-  background-color: #003366;
+  color:#ffffff;
+  background-color: #234474;
+}
+
+a.text_links:link, a.text_links:active {
+  font:#234474; text-decoration:underline; cursor:pointer;
+}
+a.text_links:visited {
+  font:#5f7596; text-decoration:underline;
+}
+a.text_links:hover {
+  font:#44874e; text-decoration:none;
 }
 
 .icon {
@@ -58,7 +65,6 @@ li a:hover {
   box-sizing: border-box;
   padding-left: 7px;
 }
-
 .box {
   display: inline-block;
   width: 70%;
