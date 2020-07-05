@@ -13,7 +13,7 @@
 
     <p>Enter the name of a band or musician that you love. We'll use the Spotify API to pull a photo along with a list of 20 similar artisit and bands you might like. This method searches all Spotify member playlists with your search entry and returns a list of 20 similar bands accross those playlists. </p>
 
-    <h1 class="header">Enter a band or musican name:</p>
+    <h1 class="header">Enter a band or musicians' name:</p>
 
     <form action="" method="post">
     <div class="input text" style="margin-left:10px;">{{form.name}}</div>
@@ -21,12 +21,16 @@
     </form>
 
     <h1 class="header">{{name}}</h1>
+    {% if image_url!=None %}
+      <p>Hear their top 10 tracks <a class="text_links" href="/music/{{searched_uri}}">here</a></p>
+    {% endif %}
 
     {% if image_url!=None %}
       <p><img src={{image_url}} style="width:70%; height:auto;" /></p>
     {% endif %}
 
     {% if similar!=None %}
+      <h1 class="header">20 similar artists you may enjoy:</h1>
       {% for key, value in similar.items() %}
         <p><a class="text_links" href="/music/{{value}}">{{key}}</a></p>
       {% endfor %}
