@@ -86,9 +86,11 @@ Name Searched is: {name}
         else:
             artist_name = items[0]["name"]
             artist_id = items[0]["id"]
+            artist_uri = items[0]["uri"]
             artists_photo = items[0]["images"][0]["url"]
             print(f"-------\nName returned is: {artist_name}")
-            print(f"Artist_id is: {artist_id}\n-------")
+            print(f"Artist_id is: {artist_id}")
+            print(f"Artist_uri is: {artist_uri}\n-------")
 
             similar_results = spotify.artist_related_artists(artist_id)
             # print(f"-------\nsimilar_results is: {similar_results}\n-------")
@@ -137,11 +139,11 @@ Name Searched is: {name}
                 print(e)
                 print(f"-------\nFirst similar_artists_URI: NO SIMILAR URI\nWhose name is: NO SIMILARS\n-------")
 
-            you_searched_for = f"You searched for: {artist_name}"
+            you_searched_for = f"You searched: {artist_name}"
             you_may_like_these_bands = f"You should check out: {similar_artists_notalist}"
 
 
-            return render_template("music.html", name=you_searched_for, image_url=artists_photo, similar=similar_dict, form=form)
+            return render_template("music.html", name=you_searched_for, searched_uri=artist_uri, image_url=artists_photo, similar=similar_dict, form=form)
 
     else:
         first_run = ""
